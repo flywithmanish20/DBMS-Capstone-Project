@@ -1,0 +1,390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f4f7fc;
+    color: #24324a;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    background: #102a56;
+    color: white;
+    padding: 30px 20px;
+    min-height: 100vh;
+}
+
+.sidebar h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+.sidebar p {
+    color: #b8c9e5;
+    margin: 8px 0 35px;
+    font-size: 13px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+nav button {
+    border: none;
+    background: transparent;
+    color: #dce7f8;
+    padding: 14px;
+    text-align: left;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+nav button:hover {
+    background: #24477d;
+    color: white;
+}
+
+main {
+    flex: 1;
+    padding: 35px;
+    min-width: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+header h1 {
+    font-size: 27px;
+    color: #142c52;
+}
+
+header p {
+    color: #7c8ba5;
+    margin-top: 7px;
+}
+
+.admin {
+    background: #e1ebff;
+    color: #2455a0;
+    padding: 10px 17px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.section h2 {
+    margin-bottom: 22px;
+    color: #18365f;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(25, 55, 100, 0.06);
+    border: 1px solid #e8edf5;
+}
+
+.card p {
+    color: #77869d;
+    font-size: 14px;
+}
+
+.card h2 {
+    font-size: 29px;
+    margin: 14px 0 0;
+    color: #2455a0;
+}
+
+.table-box {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    overflow-x: auto;
+    box-shadow: 0 5px 20px rgba(25, 55, 100, 0.06);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #edf0f5;
+    font-size: 14px;
+}
+
+th {
+    color: #315b95;
+    background: #f2f6fd;
+}
+
+td {
+    color: #53627a;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+#employeeForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+#employeeForm input,
+#employeeForm select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce4f0;
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: #24324a;
+    font-size: 14px;
+}
+
+#employeeForm input:focus,
+#employeeForm select:focus {
+    border-color: #3275ce;
+}
+
+#employeeForm button {
+    background: #2455a0;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#employeeForm button:hover {
+    background: #163e7d;
+}
+
+#formMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    #employeeForm {
+        grid-template-columns: 1fr;
+    }
+}
+#attendanceForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+#attendanceForm input,
+#attendanceForm select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce4f0;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    color: #24324a;
+}
+
+#attendanceForm button {
+    background: #2455a0;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#attendanceForm button:hover {
+    background: #163e7d;
+}
+
+#attendanceMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    #attendanceForm {
+        grid-template-columns: 1fr;
+    }
+}
+/* LEAVE MANAGEMENT */
+
+#leaveForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#leaveForm input,
+#leaveForm select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce4f0;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: #24324a;
+    font-size: 14px;
+}
+
+#leaveForm input:focus,
+#leaveForm select:focus {
+    border-color: #3275ce;
+}
+
+#leaveForm button {
+    background: #2455a0;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#leaveForm button:hover {
+    background: #163e7d;
+}
+
+#leaveMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+#leaves h3 {
+    color: #18365f;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    #leaveForm {
+        grid-template-columns: 1fr;
+    }
+}
+#salaryForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#salaryForm input,
+#salaryForm select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce4f0;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+}
+
+#salaryForm button {
+    background: #2455a0;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#salaryMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    #salaryForm {
+        grid-template-columns: 1fr;
+    }
+}
+.salary-slip-result {
+    background: #ffffff;
+    border: 1px solid #dbe3f0;
+    border-radius: 12px;
+    padding: 22px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.salary-slip-result h3 {
+    color: #1e3a8a;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.salary-slip-result p {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #334155;
+}
+
+.salary-slip-result strong {
+    color: #1e293b;
+}

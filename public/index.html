@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payroll Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>EPMS</h2>
+    <p>Payroll Management</p>
+    <nav>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('employees')">Employees</button>
+        <button onclick="showSection('departments')">Departments</button>
+        <button onclick="showSection('attendance')">Attendance</button>
+        <button onclick="showSection('payroll')">Payroll</button>
+        <button onclick="showSection('salary')">Salary Structure</button>
+        <button onclick="showSection('leaves')">Leave Management</button>
+    </nav>
+</div>
+
+<main>
+    <header>
+        <div>
+            <h1>Employee Management</h1>
+            <p>Employee Payroll & Attendance Management System</p>
+        </div>
+        <span class="admin">Admin Panel</span>
+    </header>
+
+    <section id="dashboard" class="section">
+        <h2>Dashboard Overview</h2>
+        <div class="stats">
+            <div class="card">
+                <p>Total Employees</p>
+                <h2 id="totalEmployees">0</h2>
+            </div>
+            <div class="card">
+                <p>Departments</p>
+                <h2 id="totalDepartments">0</h2>
+            </div>
+            <div class="card">
+                <p>Present Records</p>
+                <h2 id="presentRecords">0</h2>
+            </div>
+            <div class="card">
+                <p>Total Payroll</p>
+                <h2 id="totalPayroll">₹0</h2>
+            </div>
+        </div>
+    </section>
+
+    <section id="employees" class="section hidden">
+        <h2>Employee Records</h2>
+        <div class="table-box" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:15px;">Add New Employee</h3>
+
+    <form id="employeeForm">
+        <input type="text" id="employee_name" placeholder="Employee Name" required>
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="phone" placeholder="Phone Number">
+        
+        <select id="department_id" required>
+            <option value="">Select Department</option>
+        </select>
+
+        <input type="text" id="designation" placeholder="Designation">
+        <input type="date" id="joining_date" required>
+        <input type="number" id="basic_salary" placeholder="Basic Salary" min="0" step="0.01" required>
+
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <p id="formMessage"></p>
+</div>
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="departments" class="section hidden">
+        <h2>Department Records</h2>
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Department Name</th></tr>
+                </thead>
+                <tbody id="departmentTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="attendance" class="section hidden">
+        <h2>Attendance Records</h2>
+        <div class="table-box" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:15px;">Mark Employee Attendance</h3>
+
+    <form id="attendanceForm">
+        <select id="attendanceEmployee" required>
+            <option value="">Select Employee</option>
+        </select>
+
+        <input type="date" id="attendanceDate" required>
+
+        <select id="attendanceStatus" required>
+            <option value="">Select Status</option>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+            <option value="Late">Late</option>
+        </select>
+
+        <button type="submit">Save Attendance</button>
+    </form>
+
+    <p id="attendanceMessage"></p>
+</div>
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Employee</th><th>Date</th><th>Status</th></tr>
+                </thead>
+                <tbody id="attendanceTable"></tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section id="leaves" class="section hidden">
+
+    <h2>Leave Management</h2>
+
+    <div class="table-box" style="margin-bottom:20px;">
+
+        <h3>Apply for Leave</h3>
+
+        <form id="leaveForm">
+
+            <select id="leaveEmployee" required>
+                <option value="">Select Employee</option>
+            </select>
+
+            <input type="date" id="leaveStartDate" required>
+
+            <input type="date" id="leaveEndDate" required>
+
+            <input type="text" id="leaveReason"
+                   placeholder="Leave Reason" required>
+
+            <button type="submit">Submit Leave Request</button>
+
+        </form>
+
+        <p id="leaveMessage"></p>
+
+    </div>
+
+    <div class="table-box">
+
+        <h3>Leave Records</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="leaveTable"></tbody>
+        </table>
+
+    </div>
+
+</section>
+<section id="salary" class="section hidden">
+
+    <h2>Salary Structure Management</h2>
+
+    <div class="table-box" style="margin-bottom:20px;">
+
+        <h3>Add Salary Structure</h3>
+
+        <form id="salaryForm">
+
+            <select id="salaryEmployee" required>
+                <option value="">Select Employee</option>
+            </select>
+
+            <input type="number" id="salaryBasic"
+                   placeholder="Basic Salary" min="0" step="0.01" required>
+
+            <input type="number" id="salaryAllowance"
+                   placeholder="Allowance" min="0" step="0.01">
+
+            <input type="number" id="salaryTax"
+                   placeholder="Tax Percentage" min="0" max="100" step="0.01">
+
+            <button type="submit">Save Salary Structure</button>
+
+        </form>
+
+        <p id="salaryMessage"></p>
+
+    </div>
+
+    <div class="table-box">
+
+        <h3>Salary Structure Records</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Basic Salary</th>
+                    <th>Allowance</th>
+                    <th>Tax %</th>
+                </tr>
+            </thead>
+
+            <tbody id="salaryTable"></tbody>
+        </table>
+
+    </div>
+
+</section></section>  <!-- Leave section ends -->
+
+<section id="salary" class="section hidden">
+    <!-- Salary Structure ka complete code -->
+</section>
+
+<section id="payroll" class="section hidden">
+    <h3>Generate Monthly Payroll</h3>
+
+<div class="table-box" style="margin-bottom:20px;">
+
+    <form id="payrollForm">
+
+        <select id="payrollMonth" required>
+            <option value="">Select Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <input type="number" id="payrollYear"
+               placeholder="Enter Year" min="2020" required>
+
+        <button type="submit">Generate Payroll</button>
+
+    </form>
+
+    <p id="payrollMessage"></p>
+
+</div>
+    <!-- Existing Payroll code -->
+
+        <h2>Payroll Records</h2>
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Basic Salary</th>
+                        <th>Deductions</th>
+                        <th>Net Salary</th>
+                    </tr>
+                </thead>
+                <tbody id="payrollTable"></tbody>
+            </table>
+        </div>
+        <h2>Salary Slip Generation</h2>
+
+<div class="form-box">
+    <label>Employee ID</label>
+    <input type="number" id="slipEmployeeId" placeholder="Enter Employee ID">
+
+    <label>Month</label>
+    <select id="slipMonth">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
+    <label>Year</label>
+    <input type="number" id="slipYear" value="2026">
+
+    <button type="button" onclick="generateSalarySlip()">
+        Generate Salary Slip
+    </button>
+
+    <div id="salarySlipResult"></div>
+</div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
